@@ -3,8 +3,19 @@
     "description": "Translator using DeepL",
     "version": "0.1",
     "manifest_version": 3,
+
     "action": {
-        "default_popup" : "placeholder.html",
+        "default_popup" : "index.html",
         "default_icon" : "default_icon.png"
-    }
+    },
+    
+    "content_scripts": 
+    [{
+        "js": ["scripts/translator.js"],
+        "matches":
+        [
+            "https://developer.chrome.com/*",
+            "https://www.google.com/*"
+        ]
+    }]
 }
