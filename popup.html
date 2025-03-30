@@ -4,6 +4,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <h1>Translator Extension</h1>
+
+    <style>
+      body {
+        font-family: monospace;
+        margin: 0;
+        padding: 1em;
+        width: 100%;
+        position: relative;
+        min-height: 100vh;
+        box-sizing: border-box;
+      }
+      #title {
+        font-size: 3em;
+        font-weight: bold;
+        margin-bottom: 1em;
+      }
+      #logo {
+        width: 60px;
+      }
+      #footer {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      #top-right-img, #bottom-left-img {
+        position: absolute;
+        width: 60px;
+      }
+      #top-right-img {
+        top: 10px;
+        right: 10px;
+      }
+      #bottom-left-img {
+        bottom: 10px;
+        left: 10px;
+      }
+      #output {
+        margin-top: 1em;
+        padding: 0.5em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        min-height: 50px;
+        background: #f9f9f9;
+      }
+    </style>
   </head>
   <body>
     <label for="languages">Translate to:</label>
@@ -22,5 +70,13 @@
 
     <button type="button" id="translate">Translate</button>
     <script src = "popup.js"></script>
+  
+    <div id="output">Translated text...</div>
+  
+    <div id="footer">
+      <div id="contact">Contacts</div>
+      <img id="logo" src="default_icon.png" alt="Logo" />
+    </div>
+  
   </body>
 </html>

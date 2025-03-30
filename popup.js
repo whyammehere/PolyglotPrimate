@@ -30,14 +30,12 @@ chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
   function getTextFromPage() {
       const html = document.body.innerText;
   
-      console.log("html");
-      console.log(html);
+      //console.log("html");
+      //console.log(html);
 
       // const regex = /(?<=^|>)[^<>]+(?=<|$)/g; // The 'g' flag for global search
       // let match;
       // const results = [];
-  
-      
   
       // while ((match = regex.exec(html)) !== null) {
       //     console.log(match);
@@ -60,12 +58,6 @@ document.getElementById('translate').addEventListener('click', function() {
     selectedLanguage = languageSelect.value; // Get the selected language code   
 
     //console.log(selectedLanguage)
-
-
-    
-
-
-    
 
 
 
@@ -100,8 +92,11 @@ document.getElementById('translate').addEventListener('click', function() {
         }
     })
     .then(translatedData => {
-        console.log(translatedData); // Print the translated result
-        console.log("HURRAH")
+        // Print the translated result
+        console.log(translatedData["translations"][0].text);
+        const out = document.getElementById("output");
+        out.textContent = translatedData["translations"][0].text;
+        console.log("successful translation")
     })
     .catch(error => {
         console.error('There was an error!', error);
