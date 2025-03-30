@@ -1,9 +1,13 @@
 //console.log("TEST")
+//console.log("html");
+//console.log(html);
+const encoded_authKey = 'N2Q5YWQ5YWQtMTZiZi00MjU1LTlmMWMtMzkyOTc1OWZiNzcyOmZ4';
+// const regex = /(?<=^|>)[^<>]+(?=<|$)/g; // The 'g' flag for global search
+// let match;
+// const results = [];
+
 
 const url = 'https://api-free.deepl.com/v2/translate'; // DeepL API URL
-const authKey = '4e9489c3-f4ca-44c0-9e61-8bcd30cd6006:fx'; // USE ENVIRO VARIABLE
-
-
 var selectedLanguage = "EN"
 var pageText = ""
 
@@ -30,17 +34,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
   function getTextFromPage() {
       const html = document.body.innerText;
   
-      //console.log("html");
-      //console.log(html);
-
-      // const regex = /(?<=^|>)[^<>]+(?=<|$)/g; // The 'g' flag for global search
-      // let match;
-      // const results = [];
-  
-      // while ((match = regex.exec(html)) !== null) {
-      //     console.log(match);
-      //     results.push(match[1]); // match[1] contains the content between '>' and '<'
-      // }
+      
   
       
       return html
@@ -75,7 +69,7 @@ document.getElementById('translate').addEventListener('click', function() {
     const options = {
         method: 'POST',
         headers: {
-            'Authorization': `DeepL-Auth-Key ${authKey}`,
+            'Authorization': `DeepL-Auth-Key ${atob(encoded_authKey)}`,
             'Content-Type': 'application/json',
             //'User-Agent': 'YourApp/1.2.3'  // Optional, you can adjust as needed
         },
