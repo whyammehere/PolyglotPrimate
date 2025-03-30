@@ -1,15 +1,16 @@
-//console.log("TEST")
-//console.log("html");
-//console.log(html);
-const encoded_authKey = 'N2Q5YWQ5YWQtMTZiZi00MjU1LTlmMWMtMzkyOTc1OWZiNzcyOmZ4';
-// const regex = /(?<=^|>)[^<>]+(?=<|$)/g; // The 'g' flag for global search
-// let match;
-// const results = [];
-
-
+//initialize var
 const url = 'https://api-free.deepl.com/v2/translate'; // DeepL API URL
 var selectedLanguage = "EN"
 var pageText = ""
+
+
+//console.log("TEST")
+//console.log("html");
+//console.log(html);
+const encoded_authKey = 'N2Q0MjM3YzUtZGI0NS00MTkwLTk0MTctYjAxNDI0NGMyOTRjOmZ4'; //fuck this piece of shit
+// const regex = /(?<=^|>)[^<>]+(?=<|$)/g; // The 'g' flag for global search
+// let match;
+// const results = [];
 
 //Get the active tab and execute a script to extract the text
 
