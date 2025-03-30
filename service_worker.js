@@ -11,5 +11,5 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // Fallback: Open the side panel manually when user clicks the extension icon
 chrome.action.onClicked.addListener(async (tab) => {
-await chrome.sidePanel.open({ tabId: tab.id });
+    await chrome.sidePanel.open({ tabId: tab.id });
 });

@@ -1,82 +1,202 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PolyglotPrimate: AI-powered Webpage Translations</title>
+  <style>
+    body {
+      font-family: monospace;
+      margin: 0;
+      padding: 1em;
+      width: 100%;
+      position: relative;
+      min-height: 100vh;
+      box-sizing: border-box;
+      background-color: #fff9c4;
+      color: #4e342e;
+      font-size: 18px;
+    }
 
-    <h1>Translator Extension</h1>
+    .title-section {
+      margin-bottom: 1em;
+    }
 
-    <style>
-      body {
-        font-family: monospace;
-        margin: 0;
-        padding: 1em;
-        width: 100%;
-        position: relative;
-        min-height: 100vh;
-        box-sizing: border-box;
-      }
-      #title {
-        font-size: 3em;
-        font-weight: bold;
-        margin-bottom: 1em;
-      }
-      #logo {
-        width: 60px;
-      }
-      #footer {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      #top-right-img, #bottom-left-img {
-        position: absolute;
-        width: 60px;
-      }
-      #top-right-img {
-        top: 10px;
-        right: 10px;
-      }
-      #bottom-left-img {
-        bottom: 10px;
-        left: 10px;
-      }
-      #output {
-        margin-top: 1em;
-        padding: 0.5em;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        min-height: 50px;
-        background: #f9f9f9;
-      }
-    </style>
-  </head>
-  <body>
-    <label for="languages">Translate to:</label>
-    <select id="languages" name="languages">
-        <option value="ZH">Chinese (Mandarin)</option>
-        <option value="ES">Spanish</option>
-        <option value="EN">English</option>
-        <option value="HI">Hindi</option>
-        <option value="AR">Arabic</option>
-        <option value="BN">Bengali</option>
-        <option value="PT">Portuguese</option>
-        <option value="RU">Russian</option>
-        <option value="JA">Japanese</option>
-        <option value="DE">German</option>
-    </select>
+    #title {
+      font-size: 2.0em;
+      font-weight: bold;
+      text-align: left;
+      font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #4e342e;
+      width: 0;
+      animation:
+        typing 2.2s steps(15, end) forwards,
+        blink-fast 0.8s step-end 2s 4,
+        blink-slow 1.8s step-end 5.2s infinite;
+    }
 
-    <button type="button" id="translate">Translate</button>
-    <script src = "popup.js"></script>
-  
-    <div id="output">Translated text...</div>
-  
-    <div id="footer">
-      <div id="contact">Contacts</div>
-      <img id="logo" src="default_icon.png" alt="Logo" />
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 16ch } 
+    }
+
+    @keyframes blink-fast {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #4e342e; }
+    }
+
+    @keyframes blink-slow {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #4e342e; }
+    }
+
+    .select-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    label {
+      font-size: 1.0em;
+      font-family: monospace;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.6em;
+      border-radius: 12px;
+      border: 1px solid #fbc02d;
+      background-color: #fff59d;
+      color: #4e342e;
+      font-size: 0.8em;
+      font-family: monospace;
+    }
+
+    button {
+      margin-top: 0.7em;
+      padding: 0.7em 1.2em;
+      border: none;
+      border-radius: 12px;
+      background-color: #fadb61;
+      color: #4e342e; 
+      font-weight: bold;
+      font-size: 1.0em;
+      font-family: monospace;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #fae38e;
+    }
+
+    #output {
+      margin-top: 1.5em;
+      padding: 0.7em;
+      border: 1px solid #fbc02d;
+      border-radius: 10px;
+      min-height: 305px;
+      background: #fffde7;
+      overflow-y: auto;
+      font-size: 1.1em;
+      font-family: monospace;
+    }
+
+    #logo {
+      width: 50px;
+      height: 50px;
+    }
+
+    #footer {
+      position: relative; 
+      margin-top: 1em; 
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1em;
+      font-family: monospace;
+    }
+
+
+    a {
+      font-size: 1em;
+      font-family: monospace;
+    }
+
+    .translate-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 1em;
+    }
+
+    .translate-controls {
+      flex: 1;
+    }
+
+    .side-img {
+      width: 90px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .right-img {
+      width: 83px;
+      height: auto;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Section: Title -->
+  <div class="title-section">
+    <div id="title">PolyglotPrimate.</div>
+  </div>
+
+  <!-- Section: Buttons -->
+  <div class="translate-section">
+    <!-- left image -->
+    <img src="2.png" alt="Left Banana" class="side-img" />
+
+    <div class="translate-controls">
+      <div class="select-wrapper">
+        <label for="languages">Translate to:</label>
+        <select id="languages" name="languages">
+          <option value="AR">Arabic</option>
+          <option value="BN">Bengali</option>
+          <option value="ZH">Chinese (Mandarin)</option>
+          <option value="EN">English</option>
+          <option value="DE">German</option>
+          <option value="HI">Hindi</option>
+          <option value="JA">Japanese</option>
+          <option value="PT">Portuguese</option>
+          <option value="RU">Russian</option>
+          <option value="ES">Spanish</option>
+        </select>
+      </div>
+      <div style="text-align: center;">
+        <button type="button" id="translate">Translate</button>
+      </div>
     </div>
-  
-  </body>
+
+    <!-- right image -->
+    <img src="1.png" alt="Right Banana" class="side-img right-img" />
+  </div>
+
+  <!-- Section: Output -->
+  <div id="output">Translated text...</div>
+
+  <!-- Section: Footer -->
+  <div id="footer">
+    <div id="contact">
+      <small style="color:#f57f17; font-style: italic;">monkee see, monkee do</small>
+    </div>
+    <img id="logo" src="logo.png" alt="Logo" />
+  </div> 
+
+  <script src="popup.js"></script>
+</body>
 </html>
