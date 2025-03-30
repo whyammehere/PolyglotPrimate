@@ -31,7 +31,7 @@ document.getElementById('translate').addEventListener('click', function() {
         },
         (results) => {
           // Output the extracted text in the popup
-          console.log(results);
+          //console.log(results);
           console.log(results[0].result);
           pageText = results[0].result;
           
@@ -39,7 +39,7 @@ document.getElementById('translate').addEventListener('click', function() {
       );
 
     function getTextFromPage() {
-        const html = document.body.textContent
+        const html = document.body.innerText;
     
         
         console.log(html);
@@ -56,7 +56,7 @@ document.getElementById('translate').addEventListener('click', function() {
         // }
     
         
-        return results
+        return html
     }
     });
 
