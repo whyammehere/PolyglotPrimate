@@ -3,19 +3,22 @@
     "description": "Translator using DeepL",
     "version": "0.1",
     "manifest_version": 3,
+    "permissions" : ["scripting", "activeTab"],
+    "host_permissions" : ["<all_urls>"],
 
     "action": {
-        "default_popup" : "index.html",
+        "default_popup" : "popup.html",
         "default_icon" : "default_icon.png"
     },
     
     "content_scripts": 
     [{
-        "js": ["scripts/translator.js"],
+        "js": ["popup.js"],
         "matches":
         [
             "https://developer.chrome.com/*",
             "https://www.google.com/*"
         ]
-    }]
+    }] 
 }
+
